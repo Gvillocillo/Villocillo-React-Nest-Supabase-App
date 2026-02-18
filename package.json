@@ -26,10 +26,16 @@
     "info": "echo 'Guest Book Application v1.0.0 - See README.md for setup instructions'"
   },
   "devDependencies": {
-    "concurrently": "^8.2.2"
+    "concurrently": "^8.2.2",
+    "eslint": "^8.57.1"
   },
   "workspaces": [
     "backend",
     "frontend"
-  ]
+  ],
+  "dependencies": {
+    "glob": "^13.0.5",
+    "superagent": "^10.3.0",
+    "supertest": "^7.2.2"
+  }
 }
