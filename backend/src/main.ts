@@ -10,8 +10,15 @@ async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   
   // Enable CORS for frontend communication
+  // Allow multiple origins for development and production
+  const allowedOrigins = [
+    'http://localhost:3000', // Local development
+    'http://localhost:3001', // Local development (alternative)
+    process.env.FRONTEND_URL, // Set FRONTEND_URL in production (e.g., https://your-app.vercel.app)
+  ].filter(Boolean);
+
   app.enableCors({
-    origin: 'http://localhost:3000', // Next.js default port
+    origin: allowedOrigins.length > 0 ? allowedOrigins : true,
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
     credentials: true,
   });

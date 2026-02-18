@@ -1,6 +1,15 @@
 import { Comment, CreateCommentRequest } from '@/types/comment';
 
-const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001';
+const API_URL = process.env.NEXT_PUBLIC_API_URL;
+
+// Validate that API_URL is configured
+if (!API_URL) {
+  console.error(
+    '❌ ERROR: NEXT_PUBLIC_API_URL is not configured. ' +
+    'Please set the NEXT_PUBLIC_API_URL environment variable to your backend API URL. ' +
+    'Example: NEXT_PUBLIC_API_URL=https://api.example.com'
+  );
+}
 
 /**
  * API Service for guest book operations
@@ -12,6 +21,12 @@ export class ApiService {
    * @returns Promise with array of comments
    */
   static async getComments(): Promise<Comment[]> {
+    if (!API_URL) {
+      throw new Error(
+        'API URL is not configured. Please set NEXT_PUBLIC_API_URL environment variable.'
+      );
+    }
+
     try {
       const response = await fetch(`${API_URL}/comments`, {
         method: 'GET',
