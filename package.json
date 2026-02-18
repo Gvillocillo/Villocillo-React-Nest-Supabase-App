@@ -1,0 +1,35 @@
+{
+  "name": "guestbook",
+  "version": "1.0.0",
+  "description": "A minimalist guest book application with Next.js, NestJS, and Supabase",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yourusername/guest-book.git"
+  },
+  "keywords": [
+    "guestbook",
+    "nextjs",
+    "nestjs",
+    "supabase",
+    "typescript",
+    "react"
+  ],
+  "author": "",
+  "license": "MIT",
+  "scripts": {
+    "setup": "npm run setup:backend && npm run setup:frontend",
+    "setup:backend": "cd backend && npm install",
+    "setup:frontend": "cd frontend && npm install",
+    "dev": "concurrently \"npm run dev:backend\" \"npm run dev:frontend\" --names \"backend,frontend\" --prefix-colors \"blue,green\"",
+    "dev:backend": "cd backend && npm run start:dev",
+    "dev:frontend": "cd frontend && npm run dev",
+    "info": "echo 'Guest Book Application v1.0.0 - See README.md for setup instructions'"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  },
+  "workspaces": [
+    "backend",
+    "frontend"
+  ]
+}
